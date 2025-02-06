@@ -51,7 +51,7 @@ function Pokedex() {
   const cargarMasPokemons = () => setOffset((prev) => prev + 60);
 
   // Buscar Pokémon
-  const buscarPokemon = () => {
+  const buscarPokemon = (pokemonBuscado) => {
     if (!pokemonBuscado) return setSearchResult(null);
     setCargando(true);
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonBuscado.toLowerCase()}`)
