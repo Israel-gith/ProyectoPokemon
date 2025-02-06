@@ -51,7 +51,21 @@ function Pokedex() {
   const cargarMasPokemons = () => setOffset((prev) => prev + 60);
 
   // Buscar Pokémon
-  const buscarPokemon = (pokemonBuscado) => {
+  const buscarPokemon = () => {
+    if (!pokemonBuscado) return setSearchResult(null);
+    setCargando(true);
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonBuscado.toLowerCase()}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setSearchResult([data]);
+        setCargando(false);
+      })
+      .catch(() => setCargando(false));
+  };
+
+
+  // Buscar Pokémon por voz
+  const buscarPokemonvoz = pokemonBuscado => {
     if (!pokemonBuscado) return setSearchResult(null);
     setCargando(true);
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonBuscado.toLowerCase()}`)
@@ -75,7 +89,7 @@ function Pokedex() {
       command: "Buscar a *.",
       callback: (pokemonBuscado) => {
         setpokemonBuscado(pokemonBuscado);  // Actualiza el estado
-        buscarPokemon(pokemonBuscado);  // Llama a buscarPokemon directamente después de actualizar el estado
+        buscarPokemonvoz(pokemonBuscado);  // Llama a buscarPokemon directamente después de actualizar el estado
       }
     },
     {
