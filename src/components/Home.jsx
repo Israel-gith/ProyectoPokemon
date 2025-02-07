@@ -1,4 +1,4 @@
-import { Button, Typography, Grid } from "@mui/material";  // Asegúrate de importar Paper
+import { Button, Typography, Grid } from "@mui/material"; 
 import { useNavigate } from 'react-router-dom';
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import Menu from "./Menu";
